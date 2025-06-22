@@ -18,3 +18,43 @@
   font-family: "Urbanist", sans-serif;
   font-optical-sizing: auto;
 }
+
+/* a.active {
+  color: #CAEB66;
+  background: transparent;
+}
+nav a:hover{
+  color: #CAEB66;
+} */
+
+/* custom swiper css */
+
+/* .custom-swiper-pagination .custom-bullet {
+	width: 8px;
+	height: 8px;
+	border-radius: 9999px;
+	background-color: #cbd5e1;
+	opacity: 0.6;
+	transition: all 0.3s;
+}
+.custom-swiper-pagination .swiper-pagination-bullet-active.custom-bullet {
+	width: 10px;
+	height: 10px;
+	background-color: #184042;
+	opacity: 1;
+} */
+
+.custom-swiper-pagination .custom-bullet {
+	width: 8px;
+	height: 8px;
+	border-radius: 9999px;
+	background-color: #cbd5e1; /* light slate */
+	opacity: 0.6;
+	transition: all 0.3s;
+}
+.custom-swiper-pagination .swiper-pagination-bullet-active.custom-bullet {
+	width: 10px;
+	height: 10px;
+	background-color: #184042; /* dark primary */
+	opacity: 1;
+}

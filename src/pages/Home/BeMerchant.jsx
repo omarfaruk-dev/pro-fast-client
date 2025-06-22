@@ -18,9 +18,9 @@ const BeMerchant = () => {
           <h2 className="text-2xl md:text-3xl font-bold mb-4 leading-tight">
             Merchant and Customer Satisfaction <br/> is Our First Priority
           </h2>
-          <p className="mb-7 text-base md:text-[16px] text-[#b6e0e2] max-w-lg">We offer the lowest delivery charge with the highest value along with 100% safety of your product. Pathao courier delivers your parcels in every corner of Bangladesh right on time.</p>
+          <p className="mb-7 text-base md:text-[16px] text-base-100/80 max-w-lg">We offer the lowest delivery charge with the highest value along with 100% safety of your product. Pathao courier delivers your parcels in every corner of Bangladesh right on time.</p>
           <div className="flex flex-wrap gap-4">
-            <button className="btn btn-secondary rounded-full px-6 font-semibold">Become a Merchant</button>
+            <button className="btn btn-secondary text-primary rounded-full px-6 font-semibold">Become a Merchant</button>
             <button className="btn btn-outline btn-secondary rounded-full px-6 font-semibold border-2">Earn with Profast Courier</button>
           </div>
         </div>

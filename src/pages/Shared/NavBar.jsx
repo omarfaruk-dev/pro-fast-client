@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, NavLink } from "react-router";
 import { FaArrowRight, FaBars } from "react-icons/fa";
 import ProFastLogo from "./ProFastLogo";
+import { BsArrowUpRightCircle } from "react-icons/bs";
 
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -19,7 +20,7 @@ const NavBar = () => {
   return (
     <div className="navbar bg-white rounded-xl px-4 md:px-8 py-3 shadow-sm">
       <div className="flex-1">
-        <Link to="/" className="text-xl font-bold text-secondary">
+        <Link to="/" className="text-xl font-bold text-primary">
           <ProFastLogo/>
         </Link>
       </div>
@@ -30,17 +31,17 @@ const NavBar = () => {
           {navLinks}
         </ul>
         <div className="ml-4 space-x-2">
-          <Link
+          <button
             to="/login"
-            className="btn btn-sm btn-outline rounded-md border-gray-300"
+            className="btn btn-secondary btn-outline rounded-md text-primary"
           >
             Sign In
-          </Link>
+          </button>
           <Link
             to="/rider"
-            className="btn btn-sm bg-lime-300 text-black hover:bg-lime-400 rounded-md"
+            className="btn btn-secondary text-primary rounded-md"
           >
-            Be a Rider <FaArrowRight className="ml-1" />
+            Be a Rider <BsArrowUpRightCircle  size={20} />
           </Link>
         </div>
       </div>
@@ -49,7 +50,7 @@ const NavBar = () => {
       <div className="lg:hidden">
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="btn btn-ghost text-xl"
+          className="btn btn-secondary btn-outline text-xl"
         >
           <FaBars />
         </button>

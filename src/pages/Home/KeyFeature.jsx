@@ -25,7 +25,7 @@ const KeyFeature = () => {
   return (
     <section className="py-8 md:py-12">
       <div className="max-w-6xl mx-auto">
-        <hr className="border-dashed border-secondary/20 border-t-2 mx-auto mb-8 md:mb-15" />
+        <hr className="border-dashed border-primary border-t-2 mx-auto mb-10 md:mb-20" />
         <div className="flex flex-col gap-8 md:gap-10">
           {features.map((feature, idx) => (
             <div key={idx} className="bg-white rounded-2xl flex flex-col md:flex-row items-center md:items-stretch gap-0 md:gap-6 p-6 md:p-8 shadow-sm">
@@ -39,7 +39,7 @@ const KeyFeature = () => {
             </div>
           ))}
         </div>
-        <hr className="border-dashed border-secondary/30 border-t-2  mx-auto mt-10 md:mt-15" />
+        <hr className="border-dashed border-primary border-t-2  mx-auto mt-10 md:mt-20" />
       </div>
     </section>
   );

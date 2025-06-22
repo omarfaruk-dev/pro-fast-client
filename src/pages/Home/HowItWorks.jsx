@@ -27,18 +27,18 @@ const steps = [
 const HowItWorks = () => {
   return (
     <section className="py-10 px-8">
-      <h2 className="text-left text-2xl md:text-3xl font-bold mb-8">How it Works</h2>
+      <h2 className="text-left text-2xl text-primary md:text-3xl font-bold mb-8">How it Works</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {steps.map((step, idx) => (
           <div
             key={idx}
             className="bg-white rounded-2xl shadow-sm p-6 flex flex-col items-start hover:shadow-md transition"
           >
-            <div className="text-[#184042] mb-4">
+            <div className="text-primary mb-4">
               {step.icon}
             </div>
-            <h3 className="font-semibold text-lg text-[#184042] mb-2">{step.title}</h3>
-            <p className="text-gray-500 text-sm leading-relaxed">{step.desc}</p>
+            <h3 className="font-semibold text-lg text-primary mb-2">{step.title}</h3>
+            <p className="text-accent text-sm leading-relaxed">{step.desc}</p>
           </div>
         ))}
       </div>

@@ -5,6 +5,8 @@ import OurServices from '../OurServices';
 import OurClients from '../OurClients';
 import KeyFeature from '../KeyFeature';
 import BeMerchant from '../BeMerchant';
+import CustomersFeedback from '../CustomersFeedback';
+import Faq from './Faq';
 
 const Home = () => {
     return (
@@ -15,6 +17,8 @@ const Home = () => {
             <OurClients/>
             <KeyFeature/>
             <BeMerchant/>
+            <CustomersFeedback/>
+            <Faq/>
         </div>
     );
 };
