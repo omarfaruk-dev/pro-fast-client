@@ -2,12 +2,31 @@
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router";
+import useAuth from "../../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const Login = () => {
+    const {signInUser} = useAuth();
+
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = (data) => {
         console.log(data);
+        signInUser(data.email, data.password)
+        .then(result => {
+            const user = result.user;
+            Swal.fire({
+            icon: 'success',
+            title: 'Logged In Successfully!',
+            showConfirmButton: false,
+            timer: 1500
+        });
+            console.log(user);
+        })
+        .catch(error => {
+            console.log(error);
+        })
+        
     };
 
     return (

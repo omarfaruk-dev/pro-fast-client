@@ -19,11 +19,11 @@
   font-optical-sizing: auto;
 }
 
-/* a.active {
+nav a.active {
   color: #CAEB66;
   background: transparent;
 }
-nav a:hover{
+/* nav a:hover{
   color: #CAEB66;
 } */
 

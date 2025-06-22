@@ -2,15 +2,40 @@ import { useForm } from "react-hook-form";
 import { FaUser } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router";
+import useAuth from "../../hooks/useAuth";
 
 
 const Register = () => {
+
+    const {createUser, googleSignIn} = useAuth();
 
      const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = (data) => {
         console.log(data);
+        createUser(data.email, data.password)
+        .then(result => {
+            const user = result.user;
+            console.log(user);
+        })
+        .catch(error => {
+            console.error(error);
+        })
     };
+
+    //signin with google
+    const handleGoogleSignIn = () => {
+        googleSignIn()
+         .then(result => {
+             const user = result.user;
+             console.log(user);
+             
+         })
+         .catch(error => {
+             console.log(error);
+         }  )
+    }
+
 
 
     return (
@@ -56,7 +81,7 @@ const Register = () => {
                     </Link>
 
                     <button className="btn btn-secondary w-full rounded-md text-primary font-semibold mb-4">
-                        Continue
+                        Register
                     </button>
 
                     <div className="text-sm text-accent text-center">
@@ -65,7 +90,9 @@ const Register = () => {
 
                     <div className="divider my-4">Or</div>
 
-                    <button className="btn w-full bg-base-200 hover:bg-base-300">
+                    <button
+                    onClick={handleGoogleSignIn}
+                    className="btn w-full bg-base-200 hover:bg-base-300">
                         <FcGoogle className="text-xl mr-2" /> Continue with Google
                     </button>
                 </form>

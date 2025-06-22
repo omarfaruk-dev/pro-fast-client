@@ -31,12 +31,12 @@ const NavBar = () => {
           {navLinks}
         </ul>
         <div className="ml-4 space-x-2">
-          <button
+          <Link
             to="/login"
             className="btn btn-secondary btn-outline rounded-md text-primary"
           >
             Sign In
-          </button>
+          </Link>
           <Link
             to="/rider"
             className="btn btn-secondary text-primary rounded-md"
