@@ -20,7 +20,7 @@ const OurServices = () => {
         {services.map((service, idx) => (
           <div
             key={service.title}
-            className={`rounded-2xl p-7 bg-white flex flex-col items-center text-center shadow-sm transition duration-300 hover:shadow-2xl hover:bg-lime-300 ${idx === 1 ? 'bg-lime-200' : ''}`}
+            className={`rounded-2xl p-7 bg-white flex flex-col items-center text-center shadow-sm transition duration-300 hover:shadow-2xl hover:bg-[#CAEB66] ${idx === 1 ? 'bg-lime-200' : ''}`}
           >
             <div className="mb-4">{icons[idx]}</div>
             <h3 className={`font-bold text-lg md:text-xl mb-2 text-[#184042]`}>{service.title}</h3>
