@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router";
+import { Link, NavLink } from "react-router";
 import { FaArrowRight, FaBars } from "react-icons/fa";
 import ProFastLogo from "./ProFastLogo";
 
@@ -8,18 +8,18 @@ const NavBar = () => {
 
   const navLinks = (
     <>
-      <li><Link to="/services">Services</Link></li>
-      <li><Link to="/coverage">Coverage</Link></li>
-      <li><Link to="/about">About Us</Link></li>
-      <li><Link to="/pricing">Pricing</Link></li>
-      <li><Link to="/rider">Be a Rider</Link></li>
+      <li><NavLink to="/services">Services</NavLink></li>
+      <li><NavLink to="/coverage">Coverage</NavLink></li>
+      <li><NavLink to="/about">About Us</NavLink></li>
+      <li><NavLink to="/pricing">Pricing</NavLink></li>
+      <li><NavLink to="/rider">Be a Rider</NavLink></li>
     </>
   );
 
   return (
-    <div className="navbar bg-base-100 px-4 md:px-8 py-3 shadow-sm">
+    <div className="navbar bg-white rounded-xl px-4 md:px-8 py-3 shadow-sm">
       <div className="flex-1">
-        <Link to="/" className="text-xl font-bold text-primary">
+        <Link to="/" className="text-xl font-bold text-secondary">
           <ProFastLogo/>
         </Link>
       </div>

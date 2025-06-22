@@ -6,7 +6,9 @@ const Footer = () => {
     <footer className="bg-[#141414] rounded-2xl mx-2 md:mx-4 my-4">
       <div className="max-w-7xl mx-auto py-10 px-4 flex flex-col items-center">
         {/* Logo */}
-       <ProFastLogo/>
+       <div className="text-base-100">
+        <ProFastLogo/>
+       </div>
        
         {/* Description */}
         <p className="text-center text-gray-300 text-sm max-w-xl my-6">

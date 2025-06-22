@@ -26,8 +26,8 @@ const steps = [
 
 const HowItWorks = () => {
   return (
-    <section className="bg-[#f3f6f7] py-10 px-8">
-      <h2 className="text-left text-2xl md:text-3xl font-bold text-[#184042] mb-8">How it Works</h2>
+    <section className="py-10 px-8">
+      <h2 className="text-left text-2xl md:text-3xl font-bold mb-8">How it Works</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {steps.map((step, idx) => (
           <div
