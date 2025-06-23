@@ -20,8 +20,8 @@
 }
 
 nav a.active {
-  color: #CAEB66;
-  background: transparent;
+  background: #CAEB66;
+  border-radius: 25px;
 }
 /* nav a:hover{
   color: #CAEB66;
