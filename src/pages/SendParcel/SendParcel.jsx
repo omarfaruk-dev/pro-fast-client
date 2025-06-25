@@ -31,7 +31,7 @@ const SendParcel = () => {
     // Get districts by region
     const getDistrictsByRegion = (region) =>
         centersArray.filter((w) => w.region === region).map((w) => w.district);
-    console.log(serviceCenters);
+    // console.log(serviceCenters);
 
     const parcelType = watch("type");
     const senderRegion = watch("sender_region");
