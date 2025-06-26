@@ -111,7 +111,7 @@ const MyParcels = () => {
                                 {parcel.payment_status === "unpaid" && (
                                     <button
                                         onClick={() => handlePay(parcel._id)}
-                                        className="btn btn-xs btn-primary text-black"
+                                        className="btn btn-xs btn-secondary text-primary"
                                     >
                                         Pay
                                     </button>

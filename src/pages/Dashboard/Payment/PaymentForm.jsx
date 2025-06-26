@@ -121,7 +121,7 @@ const PaymentForm = () => {
 
     return (
             <form onSubmit={handleSubmit} className="space-y-4 bg-white p-6 rounded-xl shadow-md w-full max-w-md mx-auto">
-                <CardElement className="p-2 border rounded">
+                <CardElement className="p-4 border rounded">
                 </CardElement>
                 <button
                     type='submit'
