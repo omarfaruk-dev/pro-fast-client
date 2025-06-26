@@ -1,32 +1,49 @@
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router";
+import { Link, useNavigate, useLocation } from "react-router";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
-    const { signInUser } = useAuth();
+    const { signInUser, googleSignIn } = useAuth();
 
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from || "/";
 
     const onSubmit = (data) => {
         console.log(data);
         signInUser(data.email, data.password)
             .then(result => {
-                const user = result.user;
+                console.log(result.user);
                 Swal.fire({
                     icon: 'success',
                     title: 'Logged In Successfully!',
                     showConfirmButton: false,
                     timer: 1500
                 });
-                console.log(user);
+                navigate(from);
+                
             })
             .catch(error => {
                 console.log(error);
             })
 
     };
+
+     //signin with google
+    const handleGoogleSignIn = () => {
+        googleSignIn()
+         .then(result => {
+             const user = result.user;
+             console.log(user);
+             
+         })
+         .catch(error => {
+             console.log(error);
+         }  )
+    }
 
     return (
         <div className="">
@@ -73,7 +90,9 @@ const Login = () => {
 
                     <div className="divider my-4">Or</div>
 
-                    <button className="btn w-full bg-base-200 hover:bg-base-300">
+                    <button
+                    onClick={handleGoogleSignIn}
+                    className="btn w-full bg-base-200 hover:bg-base-300">
                         <FcGoogle className="text-xl mr-2" /> Login with Google
                     </button>
                 </form>

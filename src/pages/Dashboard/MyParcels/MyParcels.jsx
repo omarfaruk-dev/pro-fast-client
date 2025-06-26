@@ -1,11 +1,14 @@
 import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router';
 import useAuth from '../../../hooks/useAuth';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 
 const MyParcels = () => {
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
+    const navigate = useNavigate();
+
     const { data: parcels = [], refetch } = useQuery({
         queryKey: ['my-parcels', user.email],
         queryFn: async () => {
@@ -23,7 +26,7 @@ const MyParcels = () => {
 
     const handlePay = (id) => {
         console.log("Proceed to payment for", id);
-        // Implement your payment logic
+        navigate(`/dashboard/payment/${id}`)
     };
 
     const handleDelete = async (id) => {
@@ -39,7 +42,7 @@ const MyParcels = () => {
         });
         if (confirm.isConfirmed) {
             try {
-                
+
                 axiosSecure.delete(`/parcels/${id}`)
                     .then(res => {
                         console.log(res.data);
@@ -55,7 +58,7 @@ const MyParcels = () => {
                         refetch();
                     })
 
-                
+
             } catch (err) {
                 Swal.fire("Error", err.message || "Failed to delete parcel", "error");
             }
@@ -124,7 +127,7 @@ const MyParcels = () => {
                     ))}
                     {parcels.length === 0 && (
                         <tr>
-                            <td colSpan="6" className="text-center text-accent py-6">
+                            <td colSpan="6" className="text-center text-gray-500 py-6">
                                 No parcels found.
                             </td>
                         </tr>

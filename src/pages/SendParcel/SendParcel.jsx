@@ -128,13 +128,15 @@ const SendParcel = () => {
         <div className="p-6 max-w-6xl mx-auto">
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
                 {/* Heading */}
-                <div className="text-center">
+                <div className="text-left">
                     <h2 className="text-3xl font-bold">Send a Parcel</h2>
                     <p className="text-gray-500">Fill in the details below</p>
                 </div>
+                <hr className="border-t border-dashed border-primary/30" />
+
 
                 {/* Parcel Info */}
-                <div className="border p-4 rounded-xl shadow-md space-y-4">
+                <div className="border border-secondary/30 p-4 rounded-xl shadow-md space-y-4">
                     <h3 className="font-semibold text-xl">Parcel Info</h3>
                     <div className="space-y-4">
                         {/* Parcel Name */}
@@ -194,7 +196,7 @@ const SendParcel = () => {
                 {/* Sender & Receiver Info */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                     {/* Sender Info */}
-                    <div className="border p-4 rounded-xl shadow-md space-y-4">
+                    <div className="border border-secondary/30 p-4 rounded-xl shadow-md space-y-4">
                         <h3 className="font-semibold text-xl">Sender Info</h3>
                         <div className="grid grid-cols-1 gap-4">
                             <input {...register("sender_name", { required: true })} className="input input-bordered w-full" placeholder="Name" />
@@ -217,7 +219,7 @@ const SendParcel = () => {
                     </div>
 
                     {/* Receiver Info */}
-                    <div className="border p-4 rounded-xl shadow-md space-y-4">
+                    <div className="border border-secondary/30 p-4 rounded-xl shadow-md space-y-4">
                         <h3 className="font-semibold text-xl">Receiver Info</h3>
                         <div className="grid grid-cols-1 gap-4">
                             <input {...register("receiver_name", { required: true })} className="input input-bordered w-full" placeholder="Name" />
@@ -242,7 +244,7 @@ const SendParcel = () => {
 
                 {/* Submit Button */}
                 <div className="text-center">
-                    <button className="btn btn-secondary text-black">Submit</button>
+                    <button className="btn btn-wide btn-secondary text-black">Submit</button>
                 </div>
             </form>
         </div>

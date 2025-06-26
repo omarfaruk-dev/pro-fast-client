@@ -3,18 +3,18 @@ import Spinner from '../pages/Shared/Spinner';
 import { Navigate, useLocation } from 'react-router';
 
 const PrivateRoute = ({ children }) => {
-    const {user, loading} = useAuth();
+    const { user, loading } = useAuth();
     const location = useLocation();
 
 
-    if(loading){ 
-        return <Spinner/>;
+    if (loading) {
+        return <Spinner />;
     }
 
-    if(!user){
-        return <Navigate state={location?.pathname} to="/login"/>;
+    if (!user) {
+        return <Navigate state={{ from: location?.pathname }} to="/login" />;
     }
-
+ 
     return children;
 };
 
