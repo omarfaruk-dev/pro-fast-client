@@ -3,11 +3,14 @@ import { FaUser } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router";
 import useAuth from "../../hooks/useAuth";
+import axios from "axios";
+import { useState } from "react";
 
 
 const Register = () => {
 
-    const {createUser, googleSignIn} = useAuth();
+    const {createUser, googleSignIn, updateUserProfile} = useAuth();
+    const [profilePic, setProfilePic] = useState('');
 
      const { register, handleSubmit, formState: { errors } } = useForm();
 
@@ -17,11 +20,23 @@ const Register = () => {
         .then(result => {
             const user = result.user;
             console.log(user);
+            //update user info in the databsae
+
+            //update user profile info in the firebase
+            updateUserProfile({displayName: data.name, photoURL: profilePic})
+            .then(() => {
+                console.log('user profile updated');
+            })
+            .catch(error => {
+                console.error(error);
+            })
+
         })
         .catch(error => {
             console.error(error);
         })
     };
+
 
     //signin with google
     const handleGoogleSignIn = () => {
@@ -36,6 +51,17 @@ const Register = () => {
          }  )
     }
 
+    //handle image upload
+    const handleImageUpload = async (e) => {
+        const file = e.target.files[0];
+        console.log(file);
+        const formData = new FormData();
+        formData.append('image', file);
+        
+        const imageUploadUrl = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_upload_key}`;
+        const res = await axios.post(imageUploadUrl, formData)
+        console.log(res.data.data.url);
+    }
 
 
     return (
@@ -47,6 +73,31 @@ const Register = () => {
                     <FaUser size={20} className="text-primary/30"/>
                 </div>
                 <form onSubmit={handleSubmit(onSubmit)}>
+                     {/* name field */}
+                    <div className="mb-4">
+                        <label className="label">
+                            <span className="label-text text-primary font-medium">Your Name</span>
+                        </label>
+                        <input type="text"
+                            {...register('name', { required: true })}
+                            className="input input-bordered w-full rounded-md focus:outline-none focus:ring-1 focus:ring-secondary" 
+                            placeholder="Your Name" />
+                        {
+                            errors.name?.type === 'required' && <p className="text-red-500 text-sm mt-1">Name is required</p>
+                        }
+                    </div>
+                    
+                    {/* Image upload field */}
+                    <div className="mb-4">
+                        <label className="label">
+                            <span className="label-text text-primary font-medium">Profile Picture</span>
+                        </label>
+                        <input type="file"
+                            onChange={handleImageUpload}
+                            className="input input-bordered w-full rounded-md focus:outline-none focus:ring-1 focus:ring-secondary" 
+                            accept="image/*" />
+                    </div>
+                    
                     {/* Email Input */}
                     <div className=" mb-4">
                         <label className="label">
