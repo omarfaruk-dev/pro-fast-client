@@ -5,19 +5,21 @@ import { Link } from "react-router";
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 import { useState } from "react";
+import useAxios from "../../hooks/useAxios";
 
 
 const Register = () => {
 
     const {createUser, googleSignIn, updateUserProfile} = useAuth();
     const [profilePic, setProfilePic] = useState('');
+    const axiosInstance = useAxios();
 
      const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = (data) => {
-        console.log(data);
+
         createUser(data.email, data.password)
-        .then(result => {
+        .then(async(result) => {
             const user = result.user;
             console.log(user);
             //update user info in the databsae
@@ -28,6 +30,8 @@ const Register = () => {
                 last_log_in: new Date().toISOString(),
             }
             //update user profile info in the firebase
+            const userRes = await axiosInstance.post('/users', userInfo);
+            console.log(userRes.data);
             updateUserProfile({displayName: data.name, photoURL: profilePic})
             .then(() => {
                 console.log('user profile updated');
