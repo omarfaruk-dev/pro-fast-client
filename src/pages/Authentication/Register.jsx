@@ -50,13 +50,27 @@ const Register = () => {
     //signin with google
     const handleGoogleSignIn = () => {
         googleSignIn()
-         .then(result => {
+         .then(async(result) => {
              const user = result.user;
-             console.log(user);
-             
+               //update user info in the databsae
+            const userInfo = {
+                email: user.email,
+                role: 'user', // default role is user
+                created_at: new Date().toISOString(),
+                last_log_in: new Date().toISOString(),
+            }
+
+            const res = await axiosInstance.post('/users', userInfo);
+            console.log('user profile updated', res.data);
+            // .then(() => {
+            //     console.log('user profile updated');
+            // })
+            // .catch(error => {
+            //     console.error(error);
+            // })
          })
          .catch(error => {
-             console.log(error);
+             console.error(error);
          }  )
     }
 
