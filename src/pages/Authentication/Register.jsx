@@ -21,7 +21,12 @@ const Register = () => {
             const user = result.user;
             console.log(user);
             //update user info in the databsae
-
+            const userInfo = {
+                email: user.email,
+                role: 'user', // default role is user
+                created_at: new Date().toISOString(),
+                last_log_in: new Date().toISOString(),
+            }
             //update user profile info in the firebase
             updateUserProfile({displayName: data.name, photoURL: profilePic})
             .then(() => {
