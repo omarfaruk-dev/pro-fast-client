@@ -50,7 +50,7 @@ const NavBar = () => {
         <li><NavLink to="/dashboard">Dashboard</NavLink></li>
         </>
       }
-      <li><NavLink to="/rider">Be a Rider</NavLink></li>
+      <li><NavLink to="/about-us">About Us</NavLink></li>
     </>
   );
 
@@ -84,7 +84,7 @@ const NavBar = () => {
 
 
           <Link
-            to="/rider"
+            to="/be-a-rider"
             className="btn btn-secondary text-primary rounded-md"
           >
             Be a Rider <BsArrowUpRightCircle size={20} />
