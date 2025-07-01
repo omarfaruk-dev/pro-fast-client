@@ -6,11 +6,12 @@ import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
     const { signInUser, googleSignIn } = useAuth();
-
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const navigate = useNavigate();
+   
     const location = useLocation();
     const from = location.state?.from || "/";
+    const navigate = useNavigate();
+
 
     const onSubmit = (data) => {
         console.log(data);
@@ -38,7 +39,13 @@ const Login = () => {
          .then(result => {
              const user = result.user;
              console.log(user);
-             
+             Swal.fire({
+                 icon: 'success',
+                 title: 'Logged In Successfully!',
+                 showConfirmButton: false,
+                 timer: 1500
+             });
+             navigate(from);
          })
          .catch(error => {
              console.log(error);
@@ -85,7 +92,7 @@ const Login = () => {
                     </button>
 
                     <div className="text-sm text-accent text-center">
-                        Don’t have any account? <Link to="/register" className="text-secondary hover:underline cursor-pointer">Register</Link>
+                        Don't have any account? <Link to="/register" className="text-secondary hover:underline cursor-pointer">Register</Link>
                     </div>
 
                     <div className="divider my-4">Or</div>

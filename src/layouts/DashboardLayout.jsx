@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router';
-import { FaHome, FaBoxOpen, FaMoneyCheckAlt, FaUserEdit, FaSearchLocation, FaUserPlus, FaUserCheck } from 'react-icons/fa';
+import { FaHome, FaBoxOpen, FaMoneyCheckAlt, FaUserEdit, FaSearchLocation, FaUserPlus, FaUserCheck, FaUserShield } from 'react-icons/fa';
 import ProFastLogo from '../pages/Shared/ProFastLogo';
 
 const DashboardLayout = () => {
@@ -40,7 +40,7 @@ const DashboardLayout = () => {
                 <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
                 <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
                     {/* Sidebar content here */}
-                    <ProFastLogo/>
+                    <ProFastLogo />
                     <li>
                         <NavLink to="/dashboard">
                             <FaHome className="inline-block mr-2" />
@@ -65,12 +65,7 @@ const DashboardLayout = () => {
                             Track a Package
                         </NavLink>
                     </li>
-                    <li>
-                        <NavLink to="/dashboard/profile">
-                            <FaUserEdit className="inline-block mr-2" />
-                            Update Profile
-                        </NavLink>
-                    </li>
+
                     <li>
                         <NavLink to="/dashboard/active-riders">
                             <FaUserCheck className="inline-block mr-2" />
@@ -81,6 +76,18 @@ const DashboardLayout = () => {
                         <NavLink to="/dashboard/pending-riders">
                             <FaUserPlus className="inline-block mr-2" />
                             Pending Riders
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/dashboard/make-admin">
+                            <FaUserShield className="inline-block mr-2" />
+                            Make Admin
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/dashboard/profile">
+                            <FaUserEdit className="inline-block mr-2" />
+                            Update Profile
                         </NavLink>
                     </li>
                 </ul>

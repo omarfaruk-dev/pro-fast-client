@@ -1,27 +1,28 @@
 import { useForm } from "react-hook-form";
 import { FaUser } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router";
+import { Link, useNavigate, useLocation } from "react-router";
 import useAuth from "../../hooks/useAuth";
 import axios from "axios";
 import { useState } from "react";
 import useAxios from "../../hooks/useAxios";
-
+import Swal from "sweetalert2";
 
 const Register = () => {
 
     const {createUser, googleSignIn, updateUserProfile} = useAuth();
     const [profilePic, setProfilePic] = useState('');
     const axiosInstance = useAxios();
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from || "/";
 
-     const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = (data) => {
-
         createUser(data.email, data.password)
         .then(async(result) => {
             const user = result.user;
-            console.log(user);
             //update user info in the databsae
             const userInfo = {
                 email: user.email,
@@ -31,21 +32,25 @@ const Register = () => {
             }
             //update user profile info in the firebase
             const userRes = await axiosInstance.post('/users', userInfo);
-            console.log(userRes.data);
             updateUserProfile({displayName: data.name, photoURL: profilePic})
             .then(() => {
-                console.log('user profile updated');
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Registration Successful!',
+                    text: 'Your account has been created.',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                navigate(from);
             })
             .catch(error => {
                 console.error(error);
             })
-
         })
         .catch(error => {
             console.error(error);
         })
     };
-
 
     //signin with google
     const handleGoogleSignIn = () => {
@@ -59,15 +64,15 @@ const Register = () => {
                 created_at: new Date().toISOString(),
                 last_log_in: new Date().toISOString(),
             }
-
             const res = await axiosInstance.post('/users', userInfo);
-            console.log('user profile updated', res.data);
-            // .then(() => {
-            //     console.log('user profile updated');
-            // })
-            // .catch(error => {
-            //     console.error(error);
-            // })
+            Swal.fire({
+                icon: 'success',
+                title: 'Registration Successful!',
+                text: 'Your account has been created.',
+                showConfirmButton: false,
+                timer: 1500
+            });
+            navigate(from);
          })
          .catch(error => {
              console.error(error);
@@ -77,15 +82,12 @@ const Register = () => {
     //handle image upload
     const handleImageUpload = async (e) => {
         const file = e.target.files[0];
-        console.log(file);
         const formData = new FormData();
         formData.append('image', file);
-        
         const imageUploadUrl = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_upload_key}`;
         const res = await axios.post(imageUploadUrl, formData)
-        console.log(res.data.data.url);
+        setProfilePic(res.data.data.url);
     }
-
 
     return (
         <div className="">
