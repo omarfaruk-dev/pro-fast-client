@@ -95,9 +95,9 @@ const DashboardLayout = () => {
                     </>
                   }
                     <li>
-                        <NavLink to="/dashboard/profile">
+                        <NavLink to="/dashboard/my-profile">
                             <FaUserEdit className="inline-block mr-2" />
-                            Update Profile
+                            My Profile
                         </NavLink>
                     </li>
                 </ul>
