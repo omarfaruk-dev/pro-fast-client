@@ -3,10 +3,12 @@ import { NavLink, Outlet } from 'react-router';
 import { FaHome, FaBoxOpen, FaMoneyCheckAlt, FaUserEdit, FaSearchLocation, FaUserPlus, FaUserCheck, FaUserShield } from 'react-icons/fa';
 import ProFastLogo from '../pages/Shared/ProFastLogo';
 import useUserRole from '../hooks/useUserRole';
+import useAuth from '../hooks/useAuth';
+import Swal from 'sweetalert2';
 
 const DashboardLayout = () => {
 
-
+    const {signOutUser} = useAuth();
     const { role, roleLoading } = useUserRole()
     console.log(role);
     return (
@@ -43,7 +45,7 @@ const DashboardLayout = () => {
             </div>
             <div className="drawer-side">
                 <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
-                <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
+                <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4 flex flex-col">
                     {/* Sidebar content here */}
                     <ProFastLogo />
                     <li>
@@ -99,6 +101,31 @@ const DashboardLayout = () => {
                             <FaUserEdit className="inline-block mr-2" />
                             My Profile
                         </NavLink>
+                    </li>
+                    {/* Spacer to push logout to bottom */}
+                    <div className="flex-1"></div>
+                    <li>
+                        <button
+                            className="btn btn-error w-full text-white mt-4"
+                            onClick={async () => {
+                                const result = await Swal.fire({
+                                    title: 'Are you sure?',
+                                    text: 'You will be logged out of your account.',
+                                    icon: 'warning',
+                                    showCancelButton: true,
+                                    confirmButtonColor: '#d33',
+                                    cancelButtonColor: '#3085d6',
+                                    confirmButtonText: 'Yes, logout',
+                                    cancelButtonText: 'Cancel',
+                                });
+                                if (result.isConfirmed) {
+                                    await signOutUser();
+                                    window.location.href = "/";
+                                }
+                            }}
+                        >
+                            Logout
+                        </button>
                     </li>
                 </ul>
             </div>
