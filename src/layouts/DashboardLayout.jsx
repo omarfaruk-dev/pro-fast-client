@@ -2,8 +2,13 @@ import React from 'react';
 import { NavLink, Outlet } from 'react-router';
 import { FaHome, FaBoxOpen, FaMoneyCheckAlt, FaUserEdit, FaSearchLocation, FaUserPlus, FaUserCheck, FaUserShield } from 'react-icons/fa';
 import ProFastLogo from '../pages/Shared/ProFastLogo';
+import useUserRole from '../hooks/useUserRole';
 
 const DashboardLayout = () => {
+
+
+    const { role, roleLoading } = useUserRole()
+    console.log(role);
     return (
         <div className="drawer lg:drawer-open">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -66,7 +71,10 @@ const DashboardLayout = () => {
                         </NavLink>
                     </li>
 
-                    <li>
+                  {
+                    !roleLoading && role === 'admin' && 
+                    <>
+                      <li>
                         <NavLink to="/dashboard/active-riders">
                             <FaUserCheck className="inline-block mr-2" />
                             Active Riders
@@ -84,6 +92,8 @@ const DashboardLayout = () => {
                             Make Admin
                         </NavLink>
                     </li>
+                    </>
+                  }
                     <li>
                         <NavLink to="/dashboard/profile">
                             <FaUserEdit className="inline-block mr-2" />
